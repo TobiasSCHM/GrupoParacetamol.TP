@@ -6,6 +6,16 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <% if(title == "Express 2025") { %>
+
+      <h3>Hola motor de plantillas</h3>
+
+    <% } else { %>
+
+      <p>Welcome to <%= title %></p>
+      
+    <% } %>
+
   </body>
 </html>
