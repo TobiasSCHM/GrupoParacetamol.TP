@@ -16,7 +16,13 @@ const rutas_fotos = require("./routes/routes_photos");
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', [
+  path.join(__dirname, 'views/client'),
+  path.join(__dirname, 'views/admin'), 
+  path.join(__dirname, 'views/layouts'),
+  path.join(__dirname, 'views/partials'),
+  path.join(__dirname, 'views')
+]);
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -24,6 +30,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// para que encuentre bootsrap, me estaba dando errores sino
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
