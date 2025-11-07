@@ -1,0 +1,28 @@
+<% layout = 'client' %>
+
+  <!-- MAIN -->
+  <main class="container py-5 text-center">
+    <div class="mx-auto" style="max-width:640px">
+      <h1 class="display-6 fw-bold mb-3">Bienvenido al Autoservicio</h1>
+      <p class="lead text-muted mb-4">Ingresá tu nombre para comenzar</p>
+
+      <form id="startForm" class="card p-4 shadow-sm">
+        <div class="mb-3 input-group">
+          <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+          <input id="clienteNombre" class="form-control" placeholder="Tu nombre" required>
+        </div>
+        <button class="btn btn-success w-100" type="submit">Continuar</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('startForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const nombre = document.getElementById('clienteNombre').value.trim();
+      if (!nombre) return alert('Por favor ingresa tu nombre');
+      sessionStorage.setItem('clienteNombre', nombre);
+      location.href = '/client/products';
+    });
+  </script>
