@@ -1,62 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Autoservicio - Productos</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/estilos.css">
+  <meta charset="UTF-8">
+  <title>Productos</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary shadow-sm">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-        <img src="img/logo.png" width="40" height="40" class="rounded">
-        <span class="fw-bold">Autoservicio</span>
-      </a>
+<body class="user-body">
+  <%- include('../partials/header') %>
 
-      <div class="d-flex align-items-center ms-auto gap-2">
-        <a class="btn btn-outline-light btn-sm" href="carrito.html"><i class="bi bi-cart3"></i> Carrito <span id="cart-count" class="badge bg-light text-dark ms-1">0</span></a>
-        <a class="btn btn-outline-light btn-sm" href="login.html">Admin</a>
-        <button id="themeToggle" class="btn btn-light btn-sm ms-2">🌓</button>
-      </div>
-    </div>
-  </nav>
+  <main class="productos-container">
+    <h2>Catálogo de productos</h2>
 
-  <main class="container py-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="fw-bold">Productos</h2>
-      <div class="d-flex gap-2">
-        <select id="categoriaFilter" class="form-select form-select-sm">
-          <option value="all">Todas las categorías</option>
-          <option value="bebidas">Bebidas</option>
-          <option value="alimentos">Alimentos</option>
-          <option value="limpieza">Limpieza</option>
-        </select>
-        <input id="search" class="form-control form-control-sm" placeholder="Buscar...">
-      </div>
+    <div class="filtros">
+      <input type="text" placeholder="Buscar producto...">
+      <select>
+        <option value="">Todas las categorías</option>
+        <option value="analgésicos">Analgésicos</option>
+        <option value="antibióticos">Antibióticos</option>
+      </select>
     </div>
 
-    <div id="productosGrid" class="row g-4"></div>
-
-    <div class="mt-4 d-flex justify-content-between align-items-center">
-      <div id="paginacionInfo" class="text-muted"></div>
-      <div>
-        <button id="prevPage" class="btn btn-outline-secondary btn-sm me-2">Anterior</button>
-        <button id="nextPage" class="btn btn-outline-secondary btn-sm">Siguiente</button>
+    <div class="lista-productos">
+      <div class="producto-card">
+        <img src="/images/default-product.png" alt="Producto">
+        <h3>Ibuprofeno 400mg</h3>
+        <p>$1500</p>
+        <button>Agregar al carrito</button>
       </div>
     </div>
   </main>
 
-  <footer class="bg-white border-top text-center py-3">
-    <small class="text-muted">Grupo Paracetamol — Autoservicio</small>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/tema.js"></script>
-  <script type="module" src="js/productos.js"></script>
+  <%- include('../partials/footer') %>
 </body>
 </html>

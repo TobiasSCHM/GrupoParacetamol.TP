@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Producto</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="user-body">
+  <%- include('../partials/header') %>
+
+  <main class="productos-container">
+    <h2>Agregar nuevo producto</h2>
+    <form class="login-form" method="post" action="/api/productos">
+      <input type="text" name="nombre" placeholder="Nombre del producto" required>
+      <input type="number" name="precio" placeholder="Precio" required>
+      <input type="text" name="categoria" placeholder="Categoría">
+      <button type="submit">Guardar producto</button>
+    </form>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

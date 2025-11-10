@@ -1,20 +1,23 @@
-<% layout = 'client' %>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bienvenido Cliente</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="user-body">
+  <%- include('../partials/header') %>
 
-  <!-- MAIN -->
-  <main class="container py-5 text-center">
-    <div class="mx-auto" style="max-width:640px">
-      <h1 class="display-6 fw-bold mb-3">Bienvenido al Autoservicio</h1>
-      <p class="lead text-muted mb-4">Ingresá tu nombre para comenzar</p>
-
-      <form id="startForm" class="card p-4 shadow-sm">
-        <div class="mb-3 input-group">
-          <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-          <input id="clienteNombre" class="form-control" placeholder="Tu nombre" required>
-        </div>
-        <button class="btn btn-success w-100" type="submit">Continuar</button>
-      </form>
-    </div>
+  <main class="productos-container">
+    <h2>¡Bienvenido!</h2>
+    <p>Explorá nuestros productos o revisá tu carrito.</p>
+    <a href="/cliente/productos"><button>Ver productos</button></a>
   </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>
+
 
   <script>
     const form = document.getElementById('startForm');

@@ -1,3 +1,19 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Error</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="user-body">
+  <%- include('partials/header') %>
+
+  <main class="productos-container">
+    <h2>Error 404</h2>
+    <p><%= message || 'Página no encontrada' %></p>
+    <a href="/"><button>Volver al inicio</button></a>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
