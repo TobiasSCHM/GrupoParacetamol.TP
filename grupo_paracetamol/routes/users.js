@@ -1,12 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+/* GET /users */
+router.get('/', function(req, res) {
+  // Simulación de productos
+  const productos = [
+    { id: 1, nombre: 'Paracetamol 500mg', precio: 1200 },
+    { id: 2, nombre: 'Ibuprofeno 400mg', precio: 1500 },
+    { id: 3, nombre: 'Amoxicilina 500mg', precio: 1800 }
+  ];
 
-  const usuarios = ["juan", "esteban", "laura", "pedro"];
-
-  res.render("user", {mis_usuarios : usuarios, titulo : "Mis usuarios" } );
+  res.render('user', {
+    titulo: 'Bienvenido',
+    productos: productos
+  });
 });
 
 module.exports = router;

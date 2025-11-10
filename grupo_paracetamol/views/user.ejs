@@ -1,44 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= titulo %></title>
-    <script type="text/javascript">
-
-        function mi_funcion(params) {
-            return params;
-        }
-    </script>
+  <meta charset="UTF-8">
+  <title>Panel del Usuario - Farmacia Paracetamol 💊</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
-<body>
-    
 
-<h4>Listado de usuarios</h4>
+<body class="user-body">
+  <header class="user-header">
+    <h1>Farmacia Paracetamol 💊</h1>
+    <nav class="user-nav">
+      <button id="btn-carrito">🛒 Carrito</button>
+      <button id="btn-filtros">🔍 Filtros</button>
+      <form action="/logout" method="post" class="logout-form">
+        <button type="submit" id="btn-logout">🚪 Cerrar sesión</button>
+      </form>
+    </nav>
+  </header>
 
-<%= //mis_usuarios %>
+  <main class="productos-container">
+    <h2>Productos disponibles</h2>
 
-<% //for( const user in mis_usuarios) { 
-    
-    let mi_variable = 33;
+    <!-- Buscador / Filtros -->
+    <div class="filtros">
+      <input type="text" id="buscar" placeholder="Buscar producto...">
+      <select id="categoria">
+        <option value="">Todas las categorías</option>
+        <option value="analgésicos">Analgésicos</option>
+        <option value="antibióticos">Antibióticos</option>
+        <option value="vitaminas">Vitaminas</option>
+      </select>
+    </div>
 
-    const retorno = mi_funcion(mi_variable);
-    
-    
-    %>
+    <!-- Lista de productos -->
+    <div id="lista-productos" class="lista-productos">
+      <!-- Los productos se cargarán dinámicamente desde /api/productos -->
+    </div>
+  </main>
 
-<% ///mis_usuarios.each(.....) { %>
+  <footer>
+    <p>© 2025 Farmacia Paracetamol - Todos los derechos reservados</p>
+  </footer>
 
-    <ol>
-<% for(let i =0; i < mis_usuarios.length; i++) { %>
+  <script>
+    // 🔹 Cargar productos desde la API
+    async function cargarProductos() {
+      const res = await fetch('/api/productos');
+      const data = await res.json();
+      const contenedor = document.getElementById('lista-productos');
+      contenedor.innerHTML = '';
 
+      data.items.forEach(p => {
+        const card = document.createElement('div');
+        card.classList.add('producto-card');
+        card.innerHTML = `
+          <img src="${p.imagen || '/images/default-product.png'}" alt="${p.nombre}">
+          <h3>${p.nombre}</h3>
+          <p>$${p.precio}</p>
+          <button onclick="agregarAlCarrito(${p.id}, '${p.nombre}', ${p.precio})">Agregar al carrito</button>
+        `;
+        contenedor.appendChild(card);
+      });
+    }
 
-    <li><a href="#"><%= mis_usuarios[i] %></a></li>
+    // 🔹 Simulación de carrito
+    let carrito = [];
 
+    function agregarAlCarrito(id, nombre, precio) {
+      const existente = carrito.find(p => p.id === id);
+      if (existente) {
+        existente.cantidad++;
+      } else {
+        carrito.push({ id, nombre, precio, cantidad: 1 });
+      }
+      alert(`🛒 ${nombre} agregado al carrito`);
+    }
 
+    // 🔹 Filtro de búsqueda
+    document.getElementById('buscar').addEventListener('input', e => {
+      const texto = e.target.value.toLowerCase();
+      document.querySelectorAll('.producto-card').forEach(card => {
+        const nombre = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = nombre.includes(texto) ? 'block' : 'none';
+      });
+    });
 
-<% } %>
-    </ol>
+    // 🔹 Filtro por categoría (opcional)
+    document.getElementById('categoria').addEventListener('change', e => {
+      const categoria = e.target.value;
+      // En el futuro podrías hacer fetch('/api/productos?categoria=...')
+      console.log(`Filtrar por categoría: ${categoria}`);
+    });
 
+    // Cargar los productos al entrar
+    cargarProductos();
+  </script>
 </body>
 </html>

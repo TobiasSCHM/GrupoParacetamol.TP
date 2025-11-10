@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Farmacia Paracetamol 💊 - Inicio de Sesión</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
 
-    <% if(title == "Express 2025") { %>
+<body class="login-body">
+  <div class="login-container">
+    <h1>Bienvenido a Farmacia Paracetamol 💊</h1>
+    <p class="subtitle">Por favor, iniciá sesión para continuar</p>
 
-      <h3>Hola motor de plantillas</h3>
+    <form action="/login" method="post" class="login-form">
+      <input type="email" name="email" placeholder="Correo electrónico" required>
+      <input type="password" name="password" placeholder="Contraseña" required>
+      <button type="submit">Iniciar sesión</button>
+    </form>
 
-    <% } else { %>
-
-      <p>Welcome to <%= title %></p>
-      
-    <% } %>
-
-  </body>
+  </div>
+</body>
 </html>
