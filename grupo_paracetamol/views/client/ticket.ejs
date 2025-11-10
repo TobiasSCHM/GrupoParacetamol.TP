@@ -1,59 +1,52 @@
 <% layout = 'client' %>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ticket de compra</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="user-body">
+  <%- include('../partials/header') %>
 
-  <!-- MAIN -->
-  <main class="container py-4">
-    <div class="row justify-content-center">
-      <div class="col-lg-8">
-        <!-- TICKET -->
-        <div class="card shadow-sm border-0">
-          <div class="card-body p-4">
-            <div class="text-center mb-4">
-              <h1 class="h4 text-success mb-2">¡Compra realizada con éxito!</h1>
-              <p class="text-muted">Gracias por tu compra</p>
-            </div>
+  <main class="productos-container ticket-container">
+    <section class="ticket-card">
+      <h2 class="ticket-title">🎟️ ¡Compra realizada con éxito!</h2>
+      <p class="ticket-subtitle">Gracias por tu compra</p>
 
-            <!-- DETALLES DEL TICKET -->
-            <div class="border rounded p-3 mb-4">
-              <div class="text-center border-bottom pb-2 mb-3">
-                <h5 class="mb-1">AUTOSERVICIO</h5>
-                <small class="text-muted">Ticket de compra</small>
-              </div>
-              
-              <div class="row small mb-2">
-                <div class="col-6">
-                  <strong>Fecha:</strong> <span id="fechaTicket"></span>
-                </div>
-                <div class="col-6 text-end">
-                  <strong>Cliente:</strong> <span id="clienteTicket"></span>
-                </div>
-              </div>
+      <div class="ticket-detalles">
+        <div class="ticket-header">
+          <h3>AUTOSERVICIO</h3>
+          <p class="ticket-subinfo">Ticket de compra</p>
+        </div>
 
-              <!-- ITEMS COMPRADOS -->
-              <div id="itemsTicket" class="mb-3">
-                <!-- ITEMS SE CARGAN ACA -->
-              </div>
-
-              <div class="border-top pt-2">
-                <div class="d-flex justify-content-between">
-                  <strong>TOTAL</strong>
-                  <strong>$<span id="totalTicket">0.00</span></strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- BOTONES -->
-            <div class="text-center">
-              <button onclick="generarPDF()" class="btn btn-primary btn-sm me-2">
-                <i class="bi bi-download"></i> Descargar PDF
-              </button>
-              <a href="/" class="btn btn-outline-secondary btn-sm">
-                <i class="bi bi-house"></i> Volver al inicio
-              </a>
-            </div>
+        <div class="ticket-info">
+          <div class="info-row">
+            <span><strong>Fecha:</strong> <span id="fechaTicket"></span></span>
+            <span><strong>Cliente:</strong> <span id="clienteTicket"></span></span>
           </div>
         </div>
+
+        <div id="itemsTicket" class="ticket-items">
+          <!-- Los productos se cargarán dinámicamente -->
+        </div>
+
+        <div class="ticket-total">
+          <span><strong>Total:</strong></span>
+          <span class="total-valor">$<span id="totalTicket">0.00</span></span>
+        </div>
       </div>
-    </div>
+
+      <div class="ticket-actions">
+        <button onclick="generarPDF()" class="btn-primary">
+          💾 Descargar PDF
+        </button>
+        <a href="/"><button class="btn-secondary">🏠 Volver al inicio</button></a>
+      </div>
+    </section>
   </main>
 
+  <%- include('../partials/footer') %>
   <script src="/javascripts/ticket.js"></script>
+</body>
+</html>

@@ -1,41 +1,24 @@
-<% layout = 'client' %>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Admin - Farmacia Paracetamol</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h1>Panel Administrativo</h1>
+    <p class="subtitle">Acceso exclusivo</p>
 
-  <!-- MAIN -->
-  <main class="container py-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-4">
-        <!-- FORMULARIO LOGIN -->
-        <div class="card shadow-sm">
-          <div class="card-body p-4">
-            <div class="text-center mb-4">
-              <h1 class="h4">Acceso Administrador</h1>
-              <p class="text-muted small">Panel de control del sistema</p>
-            </div>
+    <form action="/admin/dashboard" method="get" class="login-form">
+      <input type="email" placeholder="Correo admin" required>
+      <input type="password" placeholder="Contraseña" required>
+      <button type="submit">Ingresar</button>
+    </form>
 
-            <form id="formLoginAdmin">
-              <div class="mb-3">
-                <label for="emailAdmin" class="form-label">Email</label>
-                <input type="email" id="emailAdmin" class="form-control" placeholder="admin@ejemplo.com" required>
-              </div>
-              
-              <div class="mb-3">
-                <label for="passwordAdmin" class="form-label">Contraseña</label>
-                <input type="password" id="passwordAdmin" class="form-control" placeholder="••••••••" required>
-              </div>
-
-              <button type="submit" class="btn btn-primary w-100 mb-3">
-                <i class="bi bi-box-arrow-in-right"></i> Ingresar
-              </button>
-
-              <!-- BOTON ACCESO RAPIDO -->
-              <button type="button" id="btnAccesoRapido" class="btn btn-outline-secondary w-100 btn-sm">
-                <i class="bi bi-lightning"></i> Acceso rápido para testing
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+    <div class="links">
+      <a href="/">Volver al inicio</a>
     </div>
-  </main>
-
-  <script src="/javascripts/login-admin.js"></script>
+  </div>
+</body>
+</html>

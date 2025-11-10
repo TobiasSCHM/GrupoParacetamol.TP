@@ -1,8 +1,4 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "express-generator": "^4.14.1"
-=======
   "name": "grupo-paracetamol",
   "version": "0.0.0",
   "private": true,
@@ -11,6 +7,7 @@
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
+    "express-generator": "^4.14.1",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.8",
     "cookie-parser": "~1.4.4",
@@ -22,6 +19,5 @@
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
     "nodemon": "^3.1.10"
->>>>>>> 8bd4ebd (Vinculacion de rutas, almacenamiento de datos y trabajo en vistas)
   }
 }

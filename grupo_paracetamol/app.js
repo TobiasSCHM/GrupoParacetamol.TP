@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var pagesRouter = require('./routes/pages');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api_routes');
@@ -37,7 +37,7 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
-
+app.use('/', pagesRouter);
 app.use("/productos_fotos", rutas_fotos);
 
 // catch 404 and forward to error handler
