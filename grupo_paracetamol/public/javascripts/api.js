@@ -1,7 +1,7 @@
 import { MOCK_PRODUCTOS, MOCK_USUARIOS, MOCK_VENTAS } from './mockData.js';
 
-export const USE_MOCK = true;   // ✅ Modo mock activado
-export const API_BASE = "http://localhost:3000";
+export const USE_MOCK = false;   //  DESACTIVAR CUANDO BACK-END ESTE LISTO -- DESACTIVAR CUANDO BACK-END ESTE LISTO -- DESACTIVAR CUANDO BACK-END ESTE LISTO
+export const API_BASE = "/api";  //  Ruta relativa
 
 /* ======== MOCK con persistencia ======== */
 function loadMockData() {
@@ -19,8 +19,9 @@ function saveMockData(data) {
 
 export async function fetchProductos() {
   if (USE_MOCK) return loadMockData();
-  const res = await fetch(`${API_BASE}/productos_fotos`);
-  return res.json();
+  const res = await fetch(`${API_BASE}/productos`);
+  const data = await res.json();
+  return data.items || data;
 }
 
 export async function apiCreateProducto(formData) {
@@ -41,7 +42,7 @@ export async function apiCreateProducto(formData) {
     return nuevo;
   }
 
-  return fetch(`${API_BASE}/productos_fotos`, { method: 'POST', body: formData });
+  return fetch(`${API_BASE}/productos`, { method: 'POST', body: formData });
 }
 
 export async function apiUpdateProducto(codigo, formData) {
@@ -63,7 +64,7 @@ export async function apiUpdateProducto(codigo, formData) {
     return productos[idx];
   }
 
-  return fetch(`${API_BASE}/productos_fotos/${codigo}`, { method: 'PUT', body: formData });
+  return fetch(`${API_BASE}/productos/${codigo}`, { method: 'PUT', body: formData });
 }
 
 export async function apiDeleteProducto(codigo) {
@@ -74,7 +75,7 @@ export async function apiDeleteProducto(codigo) {
     return { ok: true };
   }
 
-  return fetch(`${API_BASE}/productos_fotos/${codigo}`, { method: 'DELETE' });
+  return fetch(`${API_BASE}/productos/${codigo}`, { method: 'DELETE' });
 }
 
 /* ======== LOGIN ======== */
@@ -84,7 +85,13 @@ export async function loginAdmin(email, password) {
     if (!user) throw new Error('Credenciales inválidas');
     return { token: 'FAKE_TOKEN', user };
   }
-  throw new Error('Backend no implementado');
+
+  const response = await fetch(`${API_BASE}/admin/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+  return await response.json();
 }
 
 /* ======== VENTAS ======== */

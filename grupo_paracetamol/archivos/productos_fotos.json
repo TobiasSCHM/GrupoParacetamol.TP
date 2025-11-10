@@ -10,5 +10,19 @@
     "marca": "marca_cuatro",
     "precio": 400,
     "path": "fotos/1.jpg"
+  },
+  {
+    "codigo": 1762816270023,
+    "marca": "rwerw",
+    "precio": 12342313123,
+    "categoria": "Deporte",
+    "path": "img/default.jpg"
+  },
+  {
+    "codigo": 1762816278703,
+    "marca": "rwerw",
+    "precio": 12342313123,
+    "categoria": "Deporte",
+    "path": "img/default.jpg"
   }
 ]

@@ -14,6 +14,7 @@ function leerProductos() {
   try { return JSON.parse(fs.readFileSync(pathToUse, 'utf8')); } catch { return []; }
 }
 
+
 router.get('/productos', (req, res) => {
   const productos = leerProductos();
   const page = Math.max(1, parseInt(req.query.page) || 1);
@@ -52,6 +53,57 @@ router.post('/usuarios', express.json(), (req, res) => {
     res.status(201).json({ ok: true, usuario: nuevo });
   } catch (e) {
     res.status(400).json({ ok: false, error: e.message });
+  }
+});
+
+// POST /api/productos - CREAR PRODUCTO
+router.post('/productos', express.json(), (req, res) => {
+  const { nombre, precio, categoria } = req.body;
+  
+  if (!nombre || !precio) {
+    return res.status(400).json({ error: 'Marca y precio requeridos' });
+  }
+
+  const productos = leerProductos();
+  const nuevoProducto = {
+    codigo: Date.now(),
+    marca: nombre,
+    precio: parseFloat(precio),
+    categoria: categoria || 'electronica',
+    path: 'img/default.jpg'
+  };
+
+  productos.push(nuevoProducto);
+  const pathToUse = fs.existsSync(PATH_PRODUCTOS_FOTOS) ? PATH_PRODUCTOS_FOTOS : PATH_PRODUCTOS;
+  fs.writeFileSync(pathToUse, JSON.stringify(productos, null, 2));
+  
+  res.status(201).json({ success: true, producto: nuevoProducto });
+});
+
+// DELETE /api/productos/:id - ELIMINAR PRODUCTO
+router.delete('/productos/:id', (req, res) => {
+  const { id } = req.params;
+  const productos = leerProductos();
+  const productosFiltrados = productos.filter(p => String(p.codigo) !== id);
+  
+  if (productos.length === productosFiltrados.length) {
+    return res.status(404).json({ error: 'Producto no encontrado' });
+  }
+
+  const pathToUse = fs.existsSync(PATH_PRODUCTOS_FOTOS) ? PATH_PRODUCTOS_FOTOS : PATH_PRODUCTOS;
+  fs.writeFileSync(pathToUse, JSON.stringify(productosFiltrados, null, 2));
+  
+  res.json({ success: true, message: 'Producto eliminado' });
+});
+
+// POST /api/admin/login - LOGIN ADMIN
+router.post('/admin/login', express.json(), (req, res) => {
+  const { email, password } = req.body;
+  
+  if (email === 'admin@admin' && password === '1234') {
+    res.json({ success: true, token: 'admin-token' });
+  } else {
+    res.status(401).json({ error: 'Credenciales inválidas' });
   }
 });
 
