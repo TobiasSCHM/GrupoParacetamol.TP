@@ -1,0 +1,10 @@
+[
+  {
+    "id": 1,
+    "email": "admin@test.com",
+    "nombre": "Administrador",
+    "passwordHash": "87f9716449f7f2fef3f1e11c89b44d549962e93ac55aa5b8cb365dc98f44c45d25d466df18ec8bb3b7f86219325df93a0f3d64f23f4ac06fb6fb17ef9ec8e352",
+    "salt": "e05d4bb719d3b91ca70f28c01b7e43ff",
+    "algoritmo": "sha512:100000:64"
+  }
+]
