@@ -6,18 +6,7 @@
   <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
 
-<body class="user-body">
-  <header class="user-header">
-    <h1>Farmacia Paracetamol 💊</h1>
-    <nav class="user-nav">
-      <button id="btn-carrito">🛒 Carrito</button>
-      <button id="btn-filtros">🔍 Filtros</button>
-      <form action="/logout" method="post" class="logout-form">
-        <button type="submit" id="btn-logout">🚪 Cerrar sesión</button>
-      </form>
-    </nav>
-  </header>
-
+<%- include('partials/header') %>
   <main class="productos-container">
     <h2>Productos disponibles</h2>
 
@@ -37,10 +26,7 @@
       <!-- Los productos se cargarán dinámicamente desde /api/productos -->
     </div>
   </main>
-
-  <footer>
-    <p>© 2025 Farmacia Paracetamol - Todos los derechos reservados</p>
-  </footer>
+<%- include('partials/footer') %>
 
   <script>
     // 🔹 Cargar productos desde la API

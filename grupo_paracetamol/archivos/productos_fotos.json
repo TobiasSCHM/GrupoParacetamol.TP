@@ -24,5 +24,12 @@
     "precio": 12342313123,
     "categoria": "Deporte",
     "path": "img/default.jpg"
+  },
+  {
+    "codigo": 1762860735044,
+    "marca": "abc",
+    "precio": 123,
+    "categoria": "Categoría 1",
+    "path": "img/default.jpg"
   }
 ]

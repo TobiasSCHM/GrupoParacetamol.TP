@@ -7,6 +7,7 @@ var pagesRouter = require('./routes/pages');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api_routes');
+const session = require('express-session');
 
 //##############################################################################################//
 //RUTAS PARA EL CRUD ARCHIVOS Y FOTOS
@@ -28,17 +29,20 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // para que encuentre bootsrap, me estaba dando errores sino
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
+
+// --- Rutas ---
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', userRouter);
 app.use('/api', apiRouter);
 app.use('/', pagesRouter);
 app.use("/productos_fotos", rutas_fotos);
+app.use('/photos', photoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,3 +66,10 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
+// --- Sesiones ---
+app.use(session({
+  secret: 'grupo_paracetamol_key',
+  resave: false,
+  saveUninitialized: true
+}));

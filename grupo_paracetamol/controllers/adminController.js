@@ -61,3 +61,40 @@ const adminController = {
 };
 
 module.exports = adminController;
+
+
+
+
+// controllers/adminController.js
+const fs = require('fs');
+const path = require('path');
+const USERS_PATH = path.join(__dirname, '../archivos/usuarios.json');
+
+function loadUsers() {
+  if (!fs.existsSync(USERS_PATH)) return [];
+  return JSON.parse(fs.readFileSync(USERS_PATH, 'utf8'));
+}
+
+exports.login = (req, res) => {
+  const { email, password } = req.body;
+  const users = loadUsers();
+  const found = users.find(u => u.email === email && u.password === password);
+
+  if (!found) {
+    return res.render('admin/login', { title: 'Login Admin', error: 'Usuario o contraseña incorrectos' });
+  }
+
+  req.session.user = found;
+  res.redirect('/admin/dashboard');
+};
+
+exports.logout = (req, res) => {
+  req.session.destroy(() => res.redirect('/'));
+};
+
+exports.ensureAdmin = (req, res, next) => {
+  if (!req.session.user || req.session.user.role !== 'admin') {
+    return res.redirect('/login');
+  }
+  next();
+};

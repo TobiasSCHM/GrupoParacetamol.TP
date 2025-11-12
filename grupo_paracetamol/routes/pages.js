@@ -1,60 +1,49 @@
+// routes/pages.js
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const fs = require('fs');
 
-/* ---------- PÁGINA PRINCIPAL ---------- */
+const adminController = require('../controllers/adminController');
+
+// Página de inicio
 router.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { title: 'Grupo Paracetamol', user: req.session.user });
 });
 
-/* ---------- ADMIN ---------- */
-router.get('/admin/login', (req, res) => {
-  res.render('admin/login', { title: 'Admin Login' });
+// Login del admin
+router.get('/login', (req, res) => {
+  res.render('admin/login', { title: 'Login Admin', error: null });
 });
 
-router.get('/admin/dashboard', (req, res) => {
-  res.render('admin/dashboard', { title: 'Panel de Control' });
+// Procesar login
+router.post('/login', adminController.login);
+router.get('/logout', adminController.logout);
+
+// Acceso rápido
+router.get('/admin/quick', (req, res) => {
+  req.session.user = { email: 'admin@tp.com', role: 'admin' };
+  res.redirect('/admin/dashboard');
 });
 
-router.get('/admin/productos/nuevo', (req, res) => {
-  res.render('admin/product_form', { title: 'Alta Producto' });
+// Dashboard del admin (protegido)
+router.get('/admin/dashboard', adminController.ensureAdmin, (req, res) => {
+  res.render('admin/dashboard', { title: 'Panel Administrador', user: req.session.user });
 });
 
-router.get('/admin/modificar', (req, res) => {
-  res.render('admin/modificar', { title: 'Modificar Producto' });
-});
-/* ---------- CLIENTE ---------- */
-router.get('/cliente', (req, res) => {
-  res.render('client/welcome');
+// Formulario de productos (protegido)
+router.get('/admin/product_form', adminController.ensureAdmin, (req, res) => {
+  res.render('admin/product_form', { title: 'Gestión de Productos', user: req.session.user });
 });
 
-router.get('/cliente/productos', (req, res) => {
-  res.render('client/products');
+// Cliente - listado de productos
+router.get('/client/products', (req, res) => {
+  res.render('client/products', { title: 'Productos', user: req.session.user });
 });
 
-router.get('/cliente/carrito', (req, res) => {
-  res.render('client/cart');
-});
-
-router.get('/cliente/ticket', (req, res) => {
-  res.render('client/ticket');
-});
-
-/* ---------- GENERALES ---------- */
-router.get('/productos', (req, res) => {
-  res.render('listadoProductos');
-});
-
-router.get('/form-productos', (req, res) => {
-  res.render('formProductos');
-});
-
-router.get('/user', (req, res) => {
-  res.render('user');
-});
-
-/* ---------- ERROR 404 ---------- */
-router.use((req, res) => {
-  res.status(404).render('error', { message: 'Página no encontrada' });
+// Cliente - carrito
+router.get('/client/cart', (req, res) => {
+  res.render('client/cart', { title: 'Carrito', user: req.session.user });
 });
 
 module.exports = router;

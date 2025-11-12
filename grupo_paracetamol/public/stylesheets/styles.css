@@ -9,14 +9,23 @@ body {
   margin: 0;
 }
 
+/* --- Estructura base --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Asegura estructura vertical */
+}
+
 /* ---------- Contenedor principal ---------- */
 .container {
   background-color: white;
-  padding: 40px;
+  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 350px;
+  width: 2000px;
 }
 
 /* ---------- Títulos ---------- */
@@ -88,6 +97,21 @@ body.user-body {
   background-color: #f3f6fb;
   font-family: 'Segoe UI', Arial, sans-serif;
   margin: 0;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 80px; /* Establece una altura fija */
+}
+
+main {
+  margin-top: 80px; /* Igual a la altura del header */
 }
 
 .user-header {
@@ -187,8 +211,14 @@ body.user-body {
 }
 
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   text-align: center;
-  padding: 20px;
+  padding: 0px;
   font-size: 0.9em;
   color: #777;
 }
+
+
