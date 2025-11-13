@@ -40,8 +40,8 @@ router.get('/admin/dashboard', adminController.ensureAdmin, (req, res) => {
   }
   
   res.render('admin/dashboard', { 
-    title: 'Panel Administrador', 
-    user: req.session.user,
+    //title: 'Panel Administrador', 
+    //user: req.session.user,
     products: products 
 });
 });

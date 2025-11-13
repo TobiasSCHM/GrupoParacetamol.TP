@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <title>Dashboard Admin</title>
   <link rel="stylesheet" href="/stylesheets/styles.css">
+  <style>
+    .product-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .product-table th, .product-table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    .product-table th { background: #f8bbd9; }
+  </style>
 </head>
 <body class="user-body">
   <%- include('../partials/header') %>
@@ -12,9 +17,60 @@
     <h2>Panel de Control</h2>
     <p>Bienvenido, administrador. Desde aquí podés gestionar los productos y ventas.</p>
     <a href="/admin/productos/nuevo"><button> + Nuevo producto</button></a>
-    <%- include('./partials/product_table', { products: products }) %>
+    
+  
+    <div id="productosContainer">
+      <p> Cargando productos...</p>
+    </div>
   </main>
 
   <%- include('../partials/footer') %>
+
+  <script>
+    // CARGAR PRODUCTOS DESDE API
+    fetch('/api/productos')
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById('productosContainer');
+        const productos = data.items || data;
+        
+        if (!productos || productos.length === 0) {
+          container.innerHTML = '<p>📭 No hay productos cargados</p>';
+          return;
+        }
+        
+        let html = `
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+        
+        productos.forEach(producto => {
+          html += `
+            <tr>
+              <td>${producto.codigo || 'N/A'}</td>
+              <td>${producto.marca || 'Sin nombre'}</td>
+              <td>$${producto.precio || '0'}</td>
+              <td>${producto.categoria || 'General'}</td>
+            </tr>
+          `;
+        });
+        
+        html += '</tbody></table>';
+        container.innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('productosContainer').innerHTML = 
+          '<p> Error cargando productos</p>';
+      });
+  </script>
 </body>
 </html>
