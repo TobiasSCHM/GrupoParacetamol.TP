@@ -1,19 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Carrito</title>
-  <link rel="stylesheet" href="/stylesheets/styles.css">
-</head>
-<body class="user-body">
-  <%- include('../partials/header') %>
+<% layout = 'client' %>
 
-  <main class="productos-container">
-    <h2>🛒 Tu carrito</h2>
-    <p>Aquí verás los productos agregados para comprar.</p>
-    <a href="/cliente/ticket"><button>Finalizar compra</button></a>
+  <!-- MAIN -->
+  <main class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3 mb-0">Carrito de Compras</h1>
+      <a href="/client/products" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Seguir comprando
+      </a>
+    </div>
+
+    <!-- ITEMS DEL CARRITO -->
+    <div id="contenedorCarrito" class="mb-4">
+      <!-- LOS ITEMS DEL CARRITO SE CARGAN ACA -->
+    </div>
+
+    <!-- RESUMEN Y ACCIONES -->
+    <div class="card">
+      <div class="card-body">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <h5 class="mb-0">Total: $<span id="totalCarrito">0.00</span></h5>
+          </div>
+          <div class="col-md-6 text-end">
+            <button id="btnVaciarCarrito" class="btn btn-outline-danger btn-sm me-2">
+              <i class="bi bi-trash"></i> Vaciar
+            </button>
+            <button id="btnFinalizarCompra" class="btn btn-success" disabled>
+              <i class="bi bi-check-lg"></i> Finalizar compra
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <%- include('../partials/footer') %>
-</body>
-</html>
+  <script src="/javascripts/carrito.js"></script>

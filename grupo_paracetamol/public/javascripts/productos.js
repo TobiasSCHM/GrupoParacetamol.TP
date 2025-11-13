@@ -29,7 +29,7 @@ function renderItems(list){
           <h5 class="card-title">${p.marca}</h5>
           <p class="card-text text-muted mb-3">$${p.precio}</p>
           <div class="mt-auto">
-            <button class="btn btn-success add-btn w-100">Agregar</button>
+          <button class="btn btn-success add-btn w-100">Agregar</button>
           </div>
         </div>
       </div>`;

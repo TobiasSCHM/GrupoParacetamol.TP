@@ -93,7 +93,7 @@ const adminController = {
       const resultado = await ProductoFoto.agregar(nuevoProducto, req.file);
       
       if (resultado) {
-        res.redirect('/admin/dashboard');
+        res.json({ success: true, message: 'Producto creado' });
       } else {
         res.status(500).json({ error: 'Error al crear producto' });
       }

@@ -26,7 +26,7 @@ router.get('/admin/quick', (req, res) => {
   res.redirect('/admin/dashboard');
 });
 
-// Dashboard del admin (protegido) - VERSIÓN DIRECTA
+// Dashboard del admin (protegido)
 router.get('/admin/dashboard', adminController.ensureAdmin, (req, res) => {
   const PATH_PRODUCTOS_FOTOS = path.join(__dirname, '..', 'archivos', 'productos_fotos.json');
   
@@ -35,15 +35,14 @@ router.get('/admin/dashboard', adminController.ensureAdmin, (req, res) => {
     try {
       products = JSON.parse(fs.readFileSync(PATH_PRODUCTOS_FOTOS, 'utf8'));
     } catch (error) {
-
+      
     }
   }
   
   res.render('admin/dashboard', { 
-    //title: 'Panel Administrador', 
-    //user: req.session.user,
-    products: products 
-});
+    title: 'Panel Administrador', 
+    user: req.session.user
+  });
 });
 
 // Formulario de productos (protegido)

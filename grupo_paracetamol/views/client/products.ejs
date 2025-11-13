@@ -1,35 +1,46 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Productos</title>
-  <link rel="stylesheet" href="/stylesheets/styles.css">
-</head>
-<body class="user-body">
-  <%- include('../partials/header') %>
+<% layout = 'client' %>
 
-  <main class="productos-container">
-    <h2>Catálogo de productos</h2>
-
-    <div class="filtros">
-      <input type="text" placeholder="Buscar producto...">
-      <select>
-        <option value="">Todas las categorías</option>
-        <option value="analgésicos">Analgésicos</option>
-        <option value="antibióticos">Antibióticos</option>
-      </select>
-    </div>
-
-    <div class="lista-productos">
-      <div class="producto-card">
-        <img src="/images/default-product.png" alt="Producto">
-        <h3>Ibuprofeno 400mg</h3>
-        <p>$1500</p>
-        <button>Agregar al carrito</button>
+  <!-- MAIN -->
+  <main class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3 mb-0">Productos</h1>
+      <div class="d-flex gap-2 align-items-center">
+        <span id="saludoUsuario" class="text-muted small"></span>
+        <a href="/client/cart" class="btn btn-outline-primary btn-sm position-relative">
+          <i class="bi bi-cart3"></i> Carrito
+          <span id="contadorCarrito" class="position-absolute top-0 start-100 translate-middle badge bg-danger" style="display:none">0</span>
+        </a>
       </div>
     </div>
+
+    <!-- FILTROS -->
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-search"></i></span>
+          <input type="text" id="buscador" class="form-control" placeholder="Buscar productos...">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <select id="filtroCategoria" class="form-select">
+          <option value="">Todas las categorías</option>
+          <option value="electronica">Electrónica</option>
+          <option value="libros">Libros</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div id="contenedorProductos" class="row g-3">
+      <!-- LOS PRODUCTOS SE CARGAN ACA CON JAVASCRIPT -->
+    </div>
+
+    <!-- PAGINACION -->
+    <nav class="mt-4" id="paginacion" style="display:none">
+      <ul class="pagination justify-content-center">
+        <!-- BOTONES DE PAGINACION DINAMICOS -->
+      </ul>
+    </nav>
   </main>
 
-  <%- include('../partials/footer') %>
-</body>
-</html>
+  <script src="/javascripts/productos.js"></script>
