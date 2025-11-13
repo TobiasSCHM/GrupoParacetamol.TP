@@ -18,9 +18,11 @@ function saveMockData(data) {
 /* ======== FUNCIONES CRUD ======== */
 
 export async function fetchProductos() {
+  console.log("entro a fecht productos")
   if (USE_MOCK) return loadMockData();
   const res = await fetch(`${API_BASE}/productos`);
   const data = await res.json();
+  console.log("data:",data)
   return data.items || data;
 }
 
