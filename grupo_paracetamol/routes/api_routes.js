@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const Venta = require('../models/venta');
 const Usuario = require('../models/usuario');
+const { ensureAdmin } = require('../controllers/adminController');
 
 const PATH_PRODUCTOS = path.join(__dirname, '..', 'archivos', 'productos.json');
 const PATH_PRODUCTOS_FOTOS = path.join(__dirname, '..', 'archivos', 'productos_fotos.json');
@@ -57,7 +58,7 @@ router.post('/usuarios', express.json(), (req, res) => {
 });
 
 // POST /api/productos - CREAR PRODUCTO
-router.post('/productos', express.json(), (req, res) => {
+router.post('/productos', ensureAdmin, express.json(), (req, res) => {
   const { nombre, precio, categoria } = req.body;
   
   if (!nombre || !precio) {

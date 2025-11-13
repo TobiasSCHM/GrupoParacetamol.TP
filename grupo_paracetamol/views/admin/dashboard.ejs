@@ -12,6 +12,7 @@
     <h2>Panel de Control</h2>
     <p>Bienvenido, administrador. Desde aquí podés gestionar los productos y ventas.</p>
     <a href="/admin/productos/nuevo"><button> + Nuevo producto</button></a>
+    <%- include('./partials/product_table', { products: products }) %>
   </main>
 
   <%- include('../partials/footer') %>

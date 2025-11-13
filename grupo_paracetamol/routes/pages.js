@@ -26,13 +26,28 @@ router.get('/admin/quick', (req, res) => {
   res.redirect('/admin/dashboard');
 });
 
-// Dashboard del admin (protegido)
+// Dashboard del admin (protegido) - VERSIÓN DIRECTA
 router.get('/admin/dashboard', adminController.ensureAdmin, (req, res) => {
-  res.render('admin/dashboard', { title: 'Panel Administrador', user: req.session.user });
+  const PATH_PRODUCTOS_FOTOS = path.join(__dirname, '..', 'archivos', 'productos_fotos.json');
+  
+  let products = [];
+  if (fs.existsSync(PATH_PRODUCTOS_FOTOS)) {
+    try {
+      products = JSON.parse(fs.readFileSync(PATH_PRODUCTOS_FOTOS, 'utf8'));
+    } catch (error) {
+
+    }
+  }
+  
+  res.render('admin/dashboard', { 
+    title: 'Panel Administrador', 
+    user: req.session.user,
+    products: products 
+});
 });
 
 // Formulario de productos (protegido)
-router.get('/admin/product_form', adminController.ensureAdmin, (req, res) => {
+router.get('/admin/productos/nuevo', adminController.ensureAdmin, (req, res) => {
   res.render('admin/product_form', { title: 'Gestión de Productos', user: req.session.user });
 });
 

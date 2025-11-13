@@ -31,5 +31,26 @@
     "precio": 123,
     "categoria": "Categoría 1",
     "path": "img/default.jpg"
+  },
+  {
+    "codigo": 1762987513968,
+    "marca": "rwerw",
+    "precio": 1,
+    "categoria": "Deporte",
+    "path": "img/default.jpg"
+  },
+  {
+    "codigo": 1762987921521,
+    "marca": "rwerw",
+    "precio": 4234234,
+    "categoria": "Musica",
+    "path": "img/default.jpg"
+  },
+  {
+    "codigo": 1762988953015,
+    "marca": "relleno de empanadas marca ACME",
+    "precio": 10,
+    "categoria": "Cocina",
+    "path": "img/default.jpg"
   }
 ]

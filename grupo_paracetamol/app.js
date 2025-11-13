@@ -14,7 +14,6 @@ const session = require('express-session');
 //##############################################################################################//
 const rutas_fotos = require("./routes/routes_photos");
 
-
 var app = express();
 
 // view engine setup
@@ -31,18 +30,29 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// --- SESIONES (DEBE IR ANTES DE RUTAS) ---
+app.use(session({
+  secret: 'grupo_paracetamol_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    secure: false,
+    maxAge: 24 * 60 * 60 * 1000 // 24 horas
+  }
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 // para que encuentre bootsrap, me estaba dando errores sino
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
-
-// --- Rutas ---
+// --- RUTAS ---
 app.use('/', indexRouter);
-app.use('/users', userRouter);
+app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/', pagesRouter);
 app.use("/productos_fotos", rutas_fotos);
-app.use('/photos', photoRouter);
+// app.use('/photos', photoRouter); // (no existe pero tengo miedo de borrarlo)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -66,10 +76,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-
-// --- Sesiones ---
-app.use(session({
-  secret: 'grupo_paracetamol_key',
-  resave: false,
-  saveUninitialized: true
-}));
