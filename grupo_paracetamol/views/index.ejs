@@ -2,23 +2,33 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Farmacia Paracetamol 💊 - Inicio de Sesión</title>
+  <title>Bienvenida | Autoservicio</title>
   <link rel="stylesheet" href="/stylesheets/styles.css">
 </head>
+<body class="user-body">
+  <%- include('../partials/header') %>
 
-<body class="login-body">
-  <div class="login-container">
-    <h1>Bienvenido a Farmacia Paracetamol 💊</h1>
-    <p class="subtitle">Por favor, iniciá sesión para continuar</p>
-
-    <form action="/login" method="post" class="login-form">
-      <input type="email" name="email" placeholder="Correo electrónico" required>
-      <input type="password" name="password" placeholder="Contraseña" required>
-      <button type="submit">Iniciar sesión</button>
-      <button type="submit" a href="/admin/quick" class="btn btn-secondary"></a> Acceso rapido </button>
+  <main class="productos-container">
+    <h2>¡Bienvenido al Autoservicio!</h2>
+    <p>Ingresá tu nombre para comenzar a comprar</p>
+    
+    <form id="welcomeForm">
+      <input type="text" id="userName" placeholder="Tu nombre" required>
+      <button type="submit">Continuar a Productos</button>
     </form>
+  </main>
 
-  </div>
-  
+  <%- include('../partials/footer') %>
+
+  <script>
+    document.getElementById('welcomeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const userName = document.getElementById('userName').value.trim();
+      if (userName) {
+        localStorage.setItem('userName', userName);
+        window.location.href = '/client/products';
+      }
+    });
+  </script>
 </body>
 </html>
