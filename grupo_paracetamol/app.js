@@ -31,6 +31,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+
+
 // --- SESIONES (DEBE IR ANTES DE RUTAS) ---
 app.use(session({
   secret: 'grupo_paracetamol_key',
@@ -48,7 +50,7 @@ app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 // --- RUTAS ---
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users/productosapi', usersRouter);
 app.use('/api', apiRouter);
 app.use('/', pagesRouter);
 app.use("/productos_fotos", rutas_fotos);

@@ -29,10 +29,12 @@
 <%- include('partials/footer') %>
 
   <script>
-    // 🔹 Cargar productos desde la API
+    //  Cargar productos desde la API
+    console.log("esetomos en user")
     async function cargarProductos() {
-      const res = await fetch('/api/productos');
+      const res = await fetch('http://localhost:3000/api/productos');
       const data = await res.json();
+      console.log(await data)
       const contenedor = document.getElementById('lista-productos');
       contenedor.innerHTML = '';
 
@@ -40,10 +42,10 @@
         const card = document.createElement('div');
         card.classList.add('producto-card');
         card.innerHTML = `
-          <img src="${p.imagen || '/images/default-product.png'}" alt="${p.nombre}">
-          <h3>${p.nombre}</h3>
+          <img src="${'/fotos/6.jpg'}" alt="${p.marca}">
+          <h3>${p.marca}</h3>
           <p>$${p.precio}</p>
-          <button onclick="agregarAlCarrito(${p.id}, '${p.nombre}', ${p.precio})">Agregar al carrito</button>
+          <button onclick="agregarAlCarrito(${p.codigo}, '${p.marca}', ${p.precio})">Agregar al carrito</button>
         `;
         contenedor.appendChild(card);
       });

@@ -1,13 +1,17 @@
 import { fetchProductos } from './api.js';
 
-const grid = document.getElementById('productosGrid');
-const search = document.getElementById('search');
-const cat = document.getElementById('categoriaFilter');
-const cartCount = document.getElementById('cart-count');
-const prev = document.getElementById('prevPage');
-const nextBtn = document.getElementById('nextPage');
-const info = document.getElementById('paginacionInfo');
+console.log("estamos en productos js")
 
+const grid = document.getElementById('productosGrid');
+const search = document.getElementById('buscador');
+const cat = document.getElementById('filtroCategoria');
+const cartCount = document.getElementById('contadorCarrito');
+// const prev = document.getElementById('prevPage');
+// const nextBtn = document.getElementById('nextPage');
+// const info = document.getElementById('paginacionInfo');
+
+console.log("search")
+console.log(search);
 let productos = [];
 let page = 1, perPage = 9;
 
@@ -47,38 +51,38 @@ function addToCart(product){
   updateCartCount();
 }
 
-function paginate(items){
-  const start = (page-1)*perPage;
-  const out = items.slice(start, start+perPage);
-  info.textContent = `Página ${page} de ${Math.ceil(items.length/perPage) || 1}`;
-  prev.disabled = page<=1;
-  nextBtn.disabled = start+perPage >= items.length;
-  return out;
-}
+// function paginate(items){
+//   const start = (page-1)*perPage;
+//   const out = items.slice(start, start+perPage);
+//   info.textContent = `Página ${page} de ${Math.ceil(items.length/perPage) || 1}`;
+//   prev.disabled = page<=1;
+//   nextBtn.disabled = start+perPage >= items.length;
+//   return out;
+// }
 
-async function load(){
-  try{
-    productos = await fetchProductos();
-    applyFilters();
-  }catch(e){
-    console.error(e);
-    grid.innerHTML = '<p class="text-danger">Error cargando productos</p>';
-  }
-}
+// async function load(){
+//   try{
+//     productos = await fetchProductos();
+//     applyFilters();
+//   }catch(e){
+//     console.error(e);
+//     grid.innerHTML = '<p class="text-danger">Error cargando productos</p>';
+//   }
+// }
 
-function applyFilters(){
-  let filtered = productos;
-  const q = (search.value||'').toLowerCase().trim();
-  if(cat.value !== 'all') filtered = filtered.filter(p => p.categoria === cat.value || p.tipo === cat.value);
-  if(q) filtered = filtered.filter(p => (p.marca||'').toLowerCase().includes(q));
-  const pageItems = paginate(filtered);
-  renderItems(pageItems);
-}
+// function applyFilters(){
+//   let filtered = productos;
+//   const q = (search.value||'').toLowerCase().trim();
+//   if(cat.value !== 'all') filtered = filtered.filter(p => p.categoria === cat.value || p.tipo === cat.value);
+//   if(q) filtered = filtered.filter(p => (p.marca||'').toLowerCase().includes(q));
+//   const pageItems = paginate(filtered);
+//   renderItems(pageItems);
+// }
 
 search.addEventListener('input', ()=>{ page = 1; applyFilters(); });
 cat.addEventListener('change', ()=>{ page = 1; applyFilters(); });
-prev.addEventListener('click', ()=>{ if(page>1){ page--; applyFilters(); }});
-nextBtn.addEventListener('click', ()=>{ page++; applyFilters(); });
+// prev.addEventListener('click', ()=>{ if(page>1){ page--; applyFilters(); }});
+// nextBtn.addEventListener('click', ()=>{ page++; applyFilters(); });
 
 updateCartCount();
-load();
+// load();

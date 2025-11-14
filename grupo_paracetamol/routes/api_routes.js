@@ -11,8 +11,15 @@ const PATH_PRODUCTOS_FOTOS = path.join(__dirname, '..', 'archivos', 'productos_f
 
 function leerProductos() {
   const pathToUse = fs.existsSync(PATH_PRODUCTOS_FOTOS) ? PATH_PRODUCTOS_FOTOS : PATH_PRODUCTOS;
-  if (!fs.existsSync(pathToUse)) return [];
-  try { return JSON.parse(fs.readFileSync(pathToUse, 'utf8')); } catch { return []; }
+  if (!fs.existsSync(pathToUse)) {
+    console.log("no hay datos en el json")
+    return [];
+  }
+  try { 
+    return JSON.parse(fs.readFileSync(pathToUse, 'utf8')); 
+  } catch { 
+    return []; 
+  }
 }
 
 
