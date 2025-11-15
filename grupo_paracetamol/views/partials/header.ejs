@@ -1,36 +1,25 @@
-<header class="bg-primary text-white">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <strong>🛍️ Autoservicio</strong>
+<header class="top-header">
+    <div class="header-container">
+        
+        <!-- LOGO / MARCA -->
+        <a class="brand" href="/">
+            💊 Autoservicio
+        </a>
+
+        <!-- NAV ITEMS -->
+        <nav class="nav-links">
+            <a href="/" class="nav-item">🏠 Inicio</a>
+            <a href="/client/products" class="nav-item">📦 Productos</a>
+
+            <a href="/client/cart" class="nav-item cart-item">
+                🛒 Carrito
+                <span id="cartBadge" class="badge">0</span>
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="admin/login">Administrador</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="client/products">📦 Productos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link position-relative" href="/client/cart">
-                            🛒 Carrito
-                            <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn btn-outline-light btn-sm ms-2" id="themeToggle">🌙</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+
+            <a href="/admin/login" class="nav-item">💻 Administrador</a>
+
+            <button id="themeToggle" class="theme-btn">🌙</button>
+        </nav>
+
+    </div>
 </header>
