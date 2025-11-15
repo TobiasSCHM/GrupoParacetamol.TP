@@ -4,19 +4,26 @@
   <meta charset="UTF-8">
   <title>Bienvenida | Autoservicio</title>
   <link rel="stylesheet" href="/stylesheets/styles.css">
+  <link rel="icon" href="/fotos/favicon.jpg" type="image/png">
 </head>
 <body class="user-body">
   <%- include('../partials/header') %>
 
-  <main class="productos-container">
-    <h2>¡Bienvenido al Autoservicio!</h2>
-    <p>Ingresá tu nombre para comenzar a comprar</p>
-    
-    <form id="welcomeForm">
-      <input type="text" id="userName" placeholder="Tu nombre" required>
-      <button type="submit">Continuar a Productos</button>
-    </form>
-  </main>
+<main class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card text-center p-5 shadow-lg welcome-card">
+    <div class="card-body">
+      <h2 class="card-title text-primary mb-4">¡Bienvenido al Autoservicio!</h2>
+      <p class="card-text mb-5 text-dark">Ingresá tu nombre para comenzar a comprar</p>
+      
+      <form id="welcomeForm">
+        <input type="text" id="userName" class="form-control mb-4" placeholder="Tu nombre" required>
+        <button type="submit" class="btn btn-primary btn-lg w-100">Continuar a Productos</button>
+      </form>
+    </div>
+  </div>
+</main>
+
+
 
   <%- include('../partials/footer') %>
 

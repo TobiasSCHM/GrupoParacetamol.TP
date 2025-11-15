@@ -20,7 +20,7 @@ html, body {
 
 /* ---------- Contenedor principal ---------- */
 .container {
-  background-color: white;
+  background-color: #007bff;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -74,7 +74,7 @@ h1 span {
 }
 
 .login-form button:hover {
-  background-color: #0056b3;
+  background-color: #007bff;
 }
 
 /* ---------- Enlaces ---------- */
@@ -99,49 +99,9 @@ body.user-body {
   margin: 0;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  height: 80px; /* Establece una altura fija */
-}
-
 main {
-  margin-top: 80px; /* Igual a la altura del header */
-}
-
-.user-header {
-  background-color: #007bff;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-}
-
-.user-header h1 {
-  margin: 0;
-  font-size: 1.4em;
-}
-
-.user-nav button {
-  margin-left: 10px;
-  background-color: white;
-  border: none;
-  color: #007bff;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  font-weight: bold;
-}
-
-.user-nav button:hover {
-  background-color: #e8f0fe;
+    margin-top: 55px;    /* espacio para el header */
+    margin-bottom: 55px; /* espacio para el footer */
 }
 
 .productos-container {
@@ -211,14 +171,132 @@ main {
 }
 
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 0px;
-  font-size: 0.9em;
-  color: #777;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;           
+    background: #007bff;    
+    color: white;            
+    display: flex;
+    align-items: center;     
+    justify-content: center; 
+    font-size: 0.9em;
+    padding: 5px 20px 10px 20px; /* un poco más de espacio inferior */
+    line-height: 1.2; /* ajusta la altura de los renglones si hay varias líneas */
 }
 
+
+
+
+/* ----- HEADER DELGADO Y MODERNO ----- */
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    background: #007bff;
+    color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+}
+
+/* Contenido centrado horizontalmente del header*/
+.header-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+}
+
+/* Logo / marca */
+.brand {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+/* NAV */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* espacio entre ítems */
+}
+
+/* Botones */
+.nav-item {
+    color: white;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: 0.25s;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* BOTÓN DE TEMA */
+.theme-btn {
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 6px;
+    color: white;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.25s;
+}
+
+.theme-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Badge del carrito */
+.cart-item {
+    position: relative;
+}
+
+.cart-item .badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    display: none;
+}
+
+
+/* Fondo semitransparente y tamaño mayor para la card */
+.welcome-card {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  max-width: 500px; /* más ancho */
+  width: 90%;        /* flexible en pantallas pequeñas */
+  padding: 40px;     /* más espacio interno */
+}
+
+/* Input más grande y consistente */
+#welcomeForm input {
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+/* Botón ya usa btn-primary con efecto hover */
+#welcomeForm button:hover {
+  background-color: #0056b3;
+}
 
